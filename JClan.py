@@ -98,8 +98,125 @@ def Ping():
 
 #Nmap Function
 def nmap():
-    print("Comming soon....")
-    input("Press enter to go back")
+    os.system('clear')
+    print("          _   _       __  __       _        ____")
+    print(" | \ |'|    U|' \/ '|u U  /'\  u  U|  _'\ u ")
+    print("<|  \| |>   \| |\/| |/  \/ _ \/   \| |_) |/ ")
+    print("U| |\  |u    | |  | |   / ___ \    |  __/   ")
+    print(") |_| \_|     |_|  |_|  /_/   \_\   |_|      ")
+    print(" ||   \\,-. <<,-,,-.    \\    >>   ||>>_    ")
+    print(" (_')  (_/   (./  \.)  (__)  (__) (__)__) ")
+    print("--------------------------------------------------------")
+    print("Welcome " + member + " to the automation nmap script")
+    print("use this tool for recon on a remote host ")
+    print("--------------------------------------------------------")
+    print("First of all fill in the target (ip)")
+    nmap_target = input("Target>")
+    print("[+] Target set to " + nmap_target)
+    time.sleep(1)
+
+
+    def Function_nmap_cmd():
+        nmap_cmd = input("nmap>")
+
+        if nmap_cmd == "help":
+            print("--------------------------------")
+            print("the nmap function works the same as the JClan main page")
+            print("Just type 'use' before the module u want to use ")
+            print("if u want to see the module list than type 'show modules'")
+            print("--------------------------------")
+            input("Press enter to continue...")
+            Function_nmap_cmd()
+
+        elif nmap_cmd == "show modules":
+            print("-------------------------------")
+            print("nmap/ip/protocol")
+            print("nmap/service/version")
+            print("nmap/all/hosts               | very slow|")
+            print("nmap/http/enumeration")
+            print("nmap/os/detection")
+            print("nmap/port/scan")
+            print("nmap/vuln/script")
+            print("-------------------------------")
+            Function_nmap_cmd()
+        elif nmap_cmd == "use nmap/ip/protocol":
+
+            ip_protocol = input("nmap/ip/protocol>")
+            if ip_protocol == "run":
+                os.system('sudo nmap -sO ' + nmap_target)
+                Function_nmap_cmd()
+            else:
+                print("[-] " + ip_protocol + " not found!")
+                Function_nmap_cmd()
+
+        elif nmap_cmd == "use nmap/service/version":
+            service_version = input("nmap/service/version>")
+            if service_version == "run":
+                os.system('sudo nmap -sV ' + nmap_target)
+                Function_nmap_cmd()
+            else:
+                print("[-] " + service_version + " not found!")
+                Function_nmap_cmd()
+
+        elif nmap_cmd == "use nmap/all/hosts":
+            all_hosts = input("nmap/all/hosts>")
+            if all_hosts == "run":
+                os.system('sudo nmap -sV ' + nmap_target + ' Pn')
+                Function_nmap_cmd()
+            else:
+                print("[-] " + all_hosts + " not found!")
+                Function_nmap_cmd()
+
+        elif nmap_cmd == "use nmap/http/enumeration":
+            http_enumeration = input("nmap/http/enumeration>")
+            if http_enumeration == "run":
+                os.system('sudo nmap -sV --script=http-enum ' + nmap_target)
+                Function_nmap_cmd()
+            else:
+                print("[-] " + http_enumeration + " not found!")
+                Function_nmap_cmd()
+
+        elif nmap_cmd == "use nmap/os/detection":
+            os_detection = input("nmap/os/detection>")
+            if os_detection == "run":
+                os.system('sudo nmap -o ' + nmap_target)
+                Function_nmap_cmd()
+
+            else:
+                print("[-] " + os_detection + " not found!")
+
+        elif nmap_cmd == "use nmap/port/scan":
+            port_scan = input("nmap/port/scan>")
+            if port_scan == "run":
+                p1 = input("Port:")
+                os.system('sudo nmap -p ' + p1 + " " + nmap_target)
+                Function_nmap_cmd()
+            else:
+                print("[-] " + port_scan + " not found!")
+
+        elif nmap_cmd == "use nmap/vuln/script":
+            vuln_script = input("nmap/vuln/script>")
+            if vuln_script == "run":
+                os.system('sudo nmap --script vuln ' + nmap_target)
+                Function_nmap_cmd()
+            else:
+                print("[-] " + vuln_script + " not found!")
+                Function_nmap_cmd()
+
+        elif nmap_cmd == "back":
+            Home()
+
+        else:
+            print("[-] " + nmap_cmd + " not found!")
+            Function_nmap_cmd()
+
+
+
+
+
+    Function_nmap_cmd()
+
+
     os.system('clear')
     Home()
 
